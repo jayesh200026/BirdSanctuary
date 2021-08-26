@@ -12,10 +12,11 @@ public class ViewLayer {
 	public void printflyable() {
 		BirdSanctuaryRepository birdSanctuaryRepository = BirdSanctuaryRepository.getInstance();
 		for (Bird item : birdSanctuaryRepository.getAllBirds() ) {
-			if(item instanceof Flyable) {
+			if(item.canfly) {
 			//((Flyable)item).fly();
-				Flyable flyable= (Flyable)item;
-				flyable.fly();
+				//Flyable flyable= (Flyable)item;
+				//flyable.fly();
+				item.fly();
 			}
 
 		}
@@ -24,8 +25,9 @@ public class ViewLayer {
 	public void printswimmable() {
 		BirdSanctuaryRepository birdSanctuaryRepository = BirdSanctuaryRepository.getInstance();
 		for (Bird item : birdSanctuaryRepository.getAllBirds() ) {
-			if(item instanceof Swimmable) {
-			((Swimmable)item).swim();
+			if(item.canSwimm) {
+			//((Swimmable)item).swim();
+				item.swim();
 			}
 
 		}

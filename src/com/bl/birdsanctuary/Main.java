@@ -55,38 +55,9 @@ public class Main {
 			ViewLayer viewLayer=new ViewLayer();
 			switch (choice) {
 				case 1:
-						Bird bird = new Bird();
-						Scanner r=new Scanner(System.in);
-						System.out.println("Enter the bird id");
-						String id=r.nextLine();
-						bird.id=id;
-						System.out.println("Enter the bird name");
-						String name=r.nextLine();
-						bird.name=name;
-						System.out.println("Enter the bird color");
-						int count=1;
-						for(Bird.Color color : EnumSet.allOf(Bird.Color.class)){
-							System.out.println(""+count+" "+color);
-							count++;
-						}
-						int colorChoice=r.nextInt();
-						int count1=1;
-						for(Bird.Color color : EnumSet.allOf(Bird.Color.class)){
-							if(colorChoice==count1) {
-								bird.color=color;
-								break;
-							}
-							count1++;
-						}
-						System.out.println("Can bird fly");
-						boolean fly=r.nextBoolean();
-						bird.canfly=fly;
-						System.out.println("Can bird swim");
-						boolean swim=r.nextBoolean();
-						bird.canSwimm=swim;
+						addTempBird();
+						addBird();
 						
-						BirdSanctuaryRepository birdSanctuaryRepository = BirdSanctuaryRepository.getInstance();
-						birdSanctuaryRepository.add(bird);
 					
 					//Duck duck = new Duck(); 
 					   //Ostrich ostrich = new Ostrich(); 
@@ -139,6 +110,65 @@ public class Main {
 		}
 
 	}
+	
+	private void addBird() {
+		Bird bird = new Bird();
+		Scanner r=new Scanner(System.in);
+		System.out.println("Enter the bird id");
+		String id=r.nextLine();
+		bird.id=id;
+		System.out.println("Enter the bird name");
+		String name=r.nextLine();
+		bird.name=name;
+		System.out.println("Enter the bird color");
+		int count=1;
+		for(Bird.Color color : EnumSet.allOf(Bird.Color.class)){
+			System.out.println(""+count+" "+color);
+			count++;
+		}
+		int colorChoice=r.nextInt();
+		int count1=1;
+		for(Bird.Color color : EnumSet.allOf(Bird.Color.class)){
+			if(colorChoice==count1) {
+				bird.color=color;
+				break;
+			}
+			count1++;
+		}
+		//r.nextLine();
+		System.out.println("Can bird fly");
+		Boolean fly = r.nextBoolean();
+		bird.canfly=fly;
+		//r.next();
+		//Scanner r1=new Scanner(System.in);
+		System.out.println("Can bird swim");
+		Boolean swim = r.nextBoolean();
+		bird.canSwimm=swim;
+		
+		BirdSanctuaryRepository birdSanctuaryRepository = BirdSanctuaryRepository.getInstance();
+		birdSanctuaryRepository.add(bird);
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void addTempBird(){
+		Bird duck=new Bird();
+		duck.id="d001";
+		duck.name="Duck";
+		duck.color=Bird.Color.BLACK;
+		duck.canfly=false;
+		duck.canSwimm=true;
+		BirdSanctuaryRepository birdSanctuaryRepository = BirdSanctuaryRepository.getInstance();
+		birdSanctuaryRepository .add(duck);
+		Bird penguin=new Bird();
+		penguin.id="p001";
+		penguin.name="Penguin";
+		penguin.color=Bird.Color.BLACK;
+		penguin.canfly=true;
+		penguin.canSwimm=false;
+		birdSanctuaryRepository .add(penguin);
+	}
+	
 
 	private void editBird() {
 		Scanner r2=new Scanner(System.in);
