@@ -55,7 +55,7 @@ public class Main {
 			ViewLayer viewLayer=new ViewLayer();
 			switch (choice) {
 				case 1:
-						addTempBird();
+						//addTempBird();
 						addBird();
 						
 					
@@ -86,7 +86,16 @@ public class Main {
 						System.out.println("Enter the birdname to remove");
 						birdName=reader1.nextLine();
 						Bird removeBird=birdSanctuaryRepository.getBird(birdName);
-						birdSanctuaryRepository.remove(removeBird);
+						try {
+							if(removeBird==null) {
+								throw new BirdNotFoundException("Bird of that name is not there");
+							}
+							birdSanctuaryRepository.remove(removeBird);
+						}
+						catch(BirdNotFoundException e) {
+							System.out.println("Ops Exception");
+						}
+						
 						break;
 				case 3:
 						viewLayer.print();
